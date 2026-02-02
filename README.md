@@ -60,6 +60,27 @@ export DEV_FLOW_CLI="node ../dev-flow/cli/bin/dev-flow.js"
 
 4. **Use the agent from Codex** by invoking the entry skill or a phase directly.
 
+## Auto Install Script
+
+From this repo, you can install into another project:
+
+```bash
+./scripts/install-dev-flow-agent.sh /path/to/your-project
+```
+
+Optional CLI path override:
+
+```bash
+./scripts/install-dev-flow-agent.sh /path/to/your-project \
+  --cli-path /abs/path/to/dev-flow-codex/cli/bin/dev-flow.js
+```
+
+Optional .env write:
+
+```bash
+./scripts/install-dev-flow-agent.sh /path/to/your-project --write-env
+```
+
 ## Recommended Usage Flow
 
 ### Option A: Entry Skill
