@@ -1,0 +1,12 @@
+{
+  "name": "dev-flow",
+  "version": "0.1.0",
+  "description": "Codex-friendly dev-flow CLI for workflow state and tasks.",
+  "bin": {
+    "dev-flow": "cli/bin/dev-flow.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
