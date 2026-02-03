@@ -26,7 +26,7 @@ All phase artifacts are stored in `.dev-flow/` inside the target project.
 
 ## Installation (CLI)
 
-Global install:
+Global install (Not avaliable yet):
 
 ```bash
 npm i -g dev-flow
