@@ -41,6 +41,16 @@ fi
 $DEV_FLOW --version
 ```
 
+### Step 0.5: Ask for External MCP Context (mandatory)
+
+Before proceeding, ask the user:
+"Do you need any external MCP resources for this run (for example product docs,
+API references, or specs)? If yes, provide server name + resource URI (or doc path)."
+
+- If yes, load only the minimum required resources and keep a concise note of key
+  constraints for the current run.
+- If no, continue directly.
+
 ### Step 1: Status (if requested)
 
 ```bash

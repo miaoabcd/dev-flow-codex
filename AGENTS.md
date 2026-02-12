@@ -33,3 +33,5 @@ Each phase updates `.dev-flow/state.json` and writes artifacts in `.dev-flow/`.
 - This setup avoids Claude-specific plugin hooks and sub-agent tools.
 - If the CLI is missing, install globally (`npm i -g dev-flow`, if available)
   or set `DEV_FLOW_CLI` as shown above.
+- At the start of each phase, ask whether external MCP resources are needed
+  (docs/specs/APIs) before continuing.

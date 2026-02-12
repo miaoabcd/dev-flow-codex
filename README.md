@@ -102,6 +102,13 @@ Use $phase-4-heal: <task-id> <error-output>
 Use $phase-5-deliver
 ```
 
+## External MCP Prompt
+
+At the start of each skill phase, the agent now asks whether external MCP
+resources are needed (for example product docs, API references, or specs).
+If provided, the agent loads only the minimum required context before
+continuing.
+
 ## Where State Lives
 
 All generated artifacts live under `.dev-flow/`:
