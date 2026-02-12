@@ -1,12 +1,32 @@
 const path = require('path');
 
-const rootDir = process.cwd();
-const devFlowDir = path.join(rootDir, '.dev-flow');
-const archiveDir = path.join(devFlowDir, 'archive');
-const statePath = path.join(devFlowDir, 'state.json');
-const detectPath = path.join(devFlowDir, 'detect.json');
-const tasksDir = path.join(devFlowDir, 'tasks');
-const tasksIndexPath = path.join(tasksDir, 'index.json');
+function rootDir() {
+  return process.cwd();
+}
+
+function devFlowDir() {
+  return path.join(rootDir(), '.dev-flow');
+}
+
+function archiveDir() {
+  return path.join(devFlowDir(), 'archive');
+}
+
+function statePath() {
+  return path.join(devFlowDir(), 'state.json');
+}
+
+function detectPath() {
+  return path.join(devFlowDir(), 'detect.json');
+}
+
+function tasksDir() {
+  return path.join(devFlowDir(), 'tasks');
+}
+
+function tasksIndexPath() {
+  return path.join(tasksDir(), 'index.json');
+}
 
 module.exports = {
   rootDir,

@@ -27,14 +27,16 @@ If no requirement is provided for a new run, ask the user to supply one.
 ### Step 0: Resolve CLI
 
 ```bash
-DEV_FLOW="${DEV_FLOW_CLI:-dev-flow}"
-if ! command -v dev-flow >/dev/null 2>&1; then
-  if [ -x "../dev-flow/cli/bin/dev-flow.js" ]; then
-    DEV_FLOW="node ../dev-flow/cli/bin/dev-flow.js"
-  else
-    echo "ERROR: dev-flow CLI not found. Install or set DEV_FLOW_CLI." >&2
-    exit 1
-  fi
+DEV_FLOW="${DEV_FLOW_CLI:-}"
+if [ -n "$DEV_FLOW" ]; then
+  :
+elif command -v dev-flow >/dev/null 2>&1; then
+  DEV_FLOW="dev-flow"
+elif [ -x "../dev-flow/cli/bin/dev-flow.js" ]; then
+  DEV_FLOW="node ../dev-flow/cli/bin/dev-flow.js"
+else
+  echo "ERROR: dev-flow CLI not found. Install or set DEV_FLOW_CLI." >&2
+  exit 1
 fi
 $DEV_FLOW --version
 ```

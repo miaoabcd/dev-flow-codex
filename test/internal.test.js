@@ -146,3 +146,30 @@ test('state archive handles falsy errors in renameSync', () => {
     process.chdir(originalCwd);
   }
 });
+
+test('state archive resolves state path from current cwd at call time', () => {
+  const cwd = makeTempDir();
+  const expectedStatePath = path.join(cwd, '.dev-flow', 'state.json');
+
+  const originalCwd = process.cwd();
+  const originalExists = fs.existsSync;
+  const originalStdoutWrite = process.stdout.write;
+  let checkedPath = null;
+
+  process.stdout.write = () => true;
+  try {
+    process.chdir(cwd);
+    fs.existsSync = (candidate) => {
+      checkedPath = candidate;
+      return false;
+    };
+
+    state.archiveState(true, {});
+  } finally {
+    fs.existsSync = originalExists;
+    process.chdir(originalCwd);
+    process.stdout.write = originalStdoutWrite;
+  }
+
+  assert.equal(checkedPath, expectedStatePath);
+});

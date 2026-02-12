@@ -23,14 +23,16 @@ If inputs are missing, ask the user to provide them before proceeding.
 ### Step 0: Resolve CLI
 
 ```bash
-DEV_FLOW="${DEV_FLOW_CLI:-dev-flow}"
-if ! command -v dev-flow >/dev/null 2>&1; then
-  if [ -x "../dev-flow/cli/bin/dev-flow.js" ]; then
-    DEV_FLOW="node ../dev-flow/cli/bin/dev-flow.js"
-  else
-    echo "ERROR: dev-flow CLI not found. Install or set DEV_FLOW_CLI." >&2
-    exit 1
-  fi
+DEV_FLOW="${DEV_FLOW_CLI:-}"
+if [ -n "$DEV_FLOW" ]; then
+  :
+elif command -v dev-flow >/dev/null 2>&1; then
+  DEV_FLOW="dev-flow"
+elif [ -x "../dev-flow/cli/bin/dev-flow.js" ]; then
+  DEV_FLOW="node ../dev-flow/cli/bin/dev-flow.js"
+else
+  echo "ERROR: dev-flow CLI not found. Install or set DEV_FLOW_CLI." >&2
+  exit 1
 fi
 $DEV_FLOW --version
 ```
@@ -49,7 +51,7 @@ Prefer explicit overrides, then CLI detection, then common lockfiles.
 ```bash
 TEST_CMD="${DEV_FLOW_TEST_CMD:-}"
 if [ -z "$TEST_CMD" ]; then
-  TEST_CMD=$($DEV_FLOW detect --json | jq -r '.verifyCommands[]? | select(contains("test"))' | head -1)
+  TEST_CMD=$($DEV_FLOW detect --json | jq -r '.data.verifyCommands[]? | select(contains("test"))' | head -1)
 fi
 if [ -z "$TEST_CMD" ]; then
   if [ -f pnpm-lock.yaml ]; then

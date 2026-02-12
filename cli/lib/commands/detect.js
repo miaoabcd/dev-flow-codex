@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { detectPath } = require('../utils/paths');
+const paths = require('../utils/paths');
 const { writeJson } = require('../utils/io');
 const { ok } = require('../utils/output');
 const { nowIso } = require('../utils/time');
@@ -46,7 +46,7 @@ function detect(opts, save) {
   const data = detectProject();
   const payload = { status: 'ok', data, generatedAt: nowIso() };
   if (save) {
-    writeJson(detectPath, payload);
+    writeJson(paths.detectPath(), payload);
   }
   const message = data.packageManager
     ? `Detected package manager: ${data.packageManager}`

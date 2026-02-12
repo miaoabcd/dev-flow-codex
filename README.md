@@ -12,7 +12,7 @@ The agent provides five explicit phases plus an entry orchestrator:
 - **dev-flow (entry)**: Detects state and recommends the next phase.
 - **phase-1-clarify**: Turns a request into a PRD and initializes state.
 - **phase-2-breakdown**: Breaks the PRD into small, testable tasks.
-- **phase-3-implement**: Implements tasks (optionally with TDD).
+- **phase-3-implement**: Implements tasks with TDD (red-green-refactor).
 - **phase-4-heal**: Investigates and fixes failed tasks.
 - **phase-5-deliver**: Runs quality gates and prepares delivery.
 
@@ -26,7 +26,7 @@ All phase artifacts are stored in `.dev-flow/` inside the target project.
 
 ## Installation (CLI)
 
-Global install (Not avaliable yet):
+Global install (if published in your environment):
 
 ```bash
 npm i -g dev-flow
@@ -52,7 +52,7 @@ export DEV_FLOW_CLI="node ../dev-flow/cli/bin/dev-flow.js"
    - `.codex/skills/`
 
 2. **Ensure the CLI is available**:
-   - Install `dev-flow` globally, or
+   - Install `dev-flow` globally (if available), or
    - Set `DEV_FLOW_CLI` to a local CLI path (example above).
 
 3. **Make sure `.dev-flow/` is gitignored** (phase-2 will add it automatically
@@ -163,7 +163,7 @@ Use $phase-5-deliver
 
 ## Troubleshooting
 
-- **CLI not found**: install `dev-flow` or set `DEV_FLOW_CLI`.
+- **CLI not found**: install `dev-flow` (if available) or set `DEV_FLOW_CLI`.
 - **State stuck**: run the entry skill with `resume` or `status` to see what the
   next phase should be.
 - **Need a fresh run**: run the entry skill with `cancel` to archive current

@@ -1,12 +1,12 @@
 const path = require('path');
 
-const { tasksDir, tasksIndexPath } = require('../utils/paths');
+const paths = require('../utils/paths');
 const { ensureDir, fileExists, readJson, writeJson } = require('../utils/io');
 const { ok, fail } = require('../utils/output');
 const { nowIso } = require('../utils/time');
 
 function loadIndex(opts) {
-  const index = readJson(tasksIndexPath, { allowMissing: true });
+  const index = readJson(paths.tasksIndexPath(), { allowMissing: true });
   if (!index) {
     fail('Tasks not initialized. Run "dev-flow tasks init" first.', opts, 'E_TASKS_INDEX_MISSING');
   }
@@ -17,11 +17,11 @@ function loadIndex(opts) {
 }
 
 function saveIndex(index) {
-  writeJson(tasksIndexPath, index);
+  writeJson(paths.tasksIndexPath(), index);
 }
 
 function taskFilePath(taskId) {
-  return path.join(tasksDir, `${taskId}.json`);
+  return path.join(paths.tasksDir(), `${taskId}.json`);
 }
 
 function readTaskFile(taskId, opts) {
@@ -45,10 +45,10 @@ function initTasks(projectGoal, language, opts) {
   if (!projectGoal || !language) {
     fail('Tasks init requires --project-goal and --language.', opts, 'E_TASKS_INIT_REQUIRED');
   }
-  if (fileExists(tasksIndexPath)) {
+  if (fileExists(paths.tasksIndexPath())) {
     fail('Tasks already initialized.', opts, 'E_TASKS_INIT_EXISTS');
   }
-  ensureDir(tasksDir);
+  ensureDir(paths.tasksDir());
   const index = {
     projectGoal,
     language,

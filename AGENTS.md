@@ -31,5 +31,5 @@ Each phase updates `.dev-flow/state.json` and writes artifacts in `.dev-flow/`.
 
 - The skills are in `.codex/skills/`.
 - This setup avoids Claude-specific plugin hooks and sub-agent tools.
-- If the CLI is missing, install globally (`npm i -g dev-flow`) or set
-  `DEV_FLOW_CLI` as shown above.
+- If the CLI is missing, install globally (`npm i -g dev-flow`, if available)
+  or set `DEV_FLOW_CLI` as shown above.
